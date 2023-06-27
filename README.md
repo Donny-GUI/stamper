@@ -12,6 +12,11 @@ An easy to use python sprite cropper that crops sprites into a directory for you
 - automatically names the files in indexed order from cropping
 - automatically resets index to zero when a new directory is chosen
 
+## Controls
+- left right down and up arrows to move the box that is cropping
+- spacebar to automatically save the crop to the directory
+- Mouse left click to place the crop box some where on the image
+
 # Getting Started
 
 ```Shell
