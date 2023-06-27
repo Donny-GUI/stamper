@@ -333,6 +333,47 @@ class App:
         self.create_rectangle_coordinates()
         self.save_rectangle_location()
         self.extract_subimage()
+    
+    def autodetect_height(self):
+        path = self.filepath_label.cget("text")
+        image = Image.open(path)
+        pixel_matrix = list(image.getdata())
+        width, height = image.size
+        pixel_matrix = [pixel_matrix[i:i+width] for i in range(0, len(pixel_matrix), width)]
+        # go until you find a line that is uniform
+        first_pixel = pixel_matrix[0][0]
+        uniform_count = 0
+        max_uniform_count = 0
+        for y in range(0, height):
+            
+            is_not_uniform = False
+            
+            for x in range(0, width):
+                
+                px = pixel_matrix[y,x]
+                
+                if px == first_pixel:
+                    continue
+                else:
+                    is_not_uniform = True
+                
+                if is_not_uniform is True:
+                    break
+                
+            if is_not_uniform is False:
+                uniform_count+=1
+                
+                if uniform_count > max_uniform_count:
+                    max_uniform_count = uniform_count
+                    
+            elif is_not_uniform is True:
+                uniform_count = 0
+    
+                
+            
+                
+
+        
         
 app = App()
 app.root.mainloop()
